@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup } from '@angular/forms';
-import { id_ID } from 'ng-zorro-antd/i18n';
+import { Empleado } from 'src/app/api/models';
+import { EmpleadoControllerService } from 'src/app/api/services';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { Empleado } from '../../api/models/empleado';
-import { EmpleadoControllerService } from '../../api/services/empleado-controller.service';
-import { Departamento } from '../../api/models/departamento';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 
@@ -13,52 +11,82 @@ import { Departamento } from '../../api/models/departamento';
   templateUrl: './empleado.component.html',
   styleUrls: ['./empleado.component.css']
 })
-export class EmpleadoComponent implements OnInit{
+export class EmpleadoComponent implements OnInit {
 
-  empleado:Empleado[]=[];
-  visible:boolean=false;
+  empleado: Empleado[] = [];
+  visible: boolean = false;
+
 
   constructor(
-    private empleadoService:EmpleadoControllerService,
-    private messageService:NzMessageService,
-    private fb:FormBuilder
-  ) {}
+    private empleadoService: EmpleadoControllerService,
+    private messageService: NzMessageService,
+    private fb: FormBuilder
+  ) { }
 
   formEmpleado: FormGroup = this.fb.group({
-    idEmpleado:[],
-    nombreCompleto:[],
-    puesto:[],
-    departamento:[]
+    idEmpleado: [],
+    nombreCompleto: [],
+    puesto: [],
+    departamento: []
   })
 
   ngOnInit(): void {
-    this.empleadoService.find().subscribe(data=>this.empleado=data)
-      
+    this.empleadoService.find().subscribe(data => this.empleado = data)
+
   }
 
-  eliminar(id:string):void{
-    this.empleadoService.deleteById({id}).subscribe(()=>{
-      this.empleado=this.empleado.filter(x => x.idEmpleado !== id);
+  eliminar(id: string): void {
+    this.empleadoService.deleteById({ id }).subscribe(() => {
+      this.empleado = this.empleado.filter(x => x.idEmpleado !== id);
       this.messageService.success('Registro Eliminado')
     })
   }
 
-  cancel():void{
+  cancel(): void {
     this.messageService.info('Su registro sigue activo')
 
+
   }
 
-  ocultar():void{
-    this.visible=false
+  ocultar(): void {
+    this.visible = false
+    this.formEmpleado.reset()
+
   }
 
-  mostrar(data?:Empleado):void{
-  this.visible=true;
-}
+  mostrar(data?: Empleado): void {
+    if (data?.idEmpleado) {
+      this.formEmpleado.setValue({ ...data, 'id': String(data.idEmpleado) })
+    }
+    this.visible = true
+  }
 
-guardar():void{
-  console.log(this.formEmpleado.value)
+  guardar(): void {
+    this.formEmpleado.setValue({ ...this.formEmpleado.value })
+    if (this.formEmpleado.value.idEmpleado) {
+      this.empleadoService.updateById({ 'id': this.formEmpleado.value.idEmpleado, 'body': this.formEmpleado.value }).subscribe(
+        () => {
+          this.empleado = this.empleado.map(obj => {
+            if (obj.idEmpleado === this.formEmpleado.value.idEmpleado) {
+              return this.formEmpleado.value;
 
-}
+            }
+            return obj;
+          })
+          this.messageService.success('Registro actualizado con exito')
+          this.formEmpleado.reset()
+        }
+      )
+    } else {
+      delete this.formEmpleado.value.idEmpleado
+      this.empleadoService.create({ body: this.formEmpleado.value }).subscribe((datoAgregado) => {
+        this.empleado = [...this.empleado, datoAgregado]
+        this.messageService.success('Registro creado con exito!!')
+        this.formEmpleado.reset()
 
+      })
+    }
+    this.visible = false
+
+  }
 }

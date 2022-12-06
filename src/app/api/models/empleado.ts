@@ -10,4 +10,5 @@ export interface Empleado {
   puesto: string;
   turnosId?: string;
   vacacionesId?: string;
+  
 }
