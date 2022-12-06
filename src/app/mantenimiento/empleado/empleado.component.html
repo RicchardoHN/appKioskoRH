@@ -1,0 +1,86 @@
+<div nz-row nzJustify="center" nzAlign="middle">
+    <div nz-col nzSpan="24" nzJustify="center">
+        <h1>Empleados</h1>
+    </div>
+</div>
+<div nz-row>
+    <div nz-col nzSpan="24"><button (click)="mostrar()" nz-button nzType="primary">Nuevo Empleado</button></div>
+</div>
+<hr>
+<div nz-row>
+    <div nz-col nzSpan="24">
+        <nz-table #basicTable [nzData]="empleado">
+        <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Puesto</th>
+        <th>Departamento</th>
+        <th>Estado</th>
+	    <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{data.nombreCompleto}}</td>
+        <td>{{data.puesto}}</td>
+        <td>{{data.departamento}}</td>
+        <td>
+            <div *ngIf="data.idEmpleado"><i nz-icon nzType="check-square" nzTheme="outline"></i></div>
+        </td>
+        <td>
+            <a (click)="mostrar(data)"><i nz-icon nzType="edit" nzTheme="twotone"></i></a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a nz-popconfirm
+            nzPopconfirmTitle="Esta seguro de borrar el registro?" nzPopconfirmPlacemennt="bottom"
+            (nzOnConfirm)="eliminar(data.idEmpleado)" (nzOnCancel)="cancel()" nzShape="circle" nzCancelText="No" nzOkText="Si"><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+</div>
+
+
+
+  <nz-modal [(nzVisible)]="visible" nzTitle="Administracion Empleado" >
+    <ng-container *nzModalContent>
+      <form nz-form nzLayout="vertical" (ngSubmit)="guardar()" FormGroup="formEmpleado">
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                     <nz-form-label>Nombre Completo</nz-form-label>
+                     <nz-form-control formControlName="nombre" nzErrorTip="Favor ingrese el dato correcto">
+                     <input nz-input placeholder="Escriba el nombre completo del empleado" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                     <nz-form-label>Puesto</nz-form-label>
+                     <nz-form-control formControlName="puesto" nzErrorTip="Favor ingrese el dato correcto">
+                     <input nz-input placeholder="Escriba el puesto del empleado" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                     <nz-form-label>Departamento</nz-form-label>
+                     <nz-form-control formControlName="departamento" nzErrorTip="Favor ingrese el dato correcto">
+                     <input nz-input placeholder="Escriba el departamento al que pertenece el empleado" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>            
+    </form>
+    </ng-container>
+    <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="ocultar()">Cancelar</button>
+        <button nz-button nzType="primary" (click)="guardar()">Guardar</button>
+    </div>
+  </nz-modal>
