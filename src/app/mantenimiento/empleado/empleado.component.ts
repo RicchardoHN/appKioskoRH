@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Empleado } from 'src/app/api/models';
 import { EmpleadoControllerService } from 'src/app/api/services';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -15,24 +14,24 @@ export class EmpleadoComponent implements OnInit {
 
   empleado: Empleado[] = [];
   visible: boolean = false;
-
-
-  constructor(
-    private empleadoService: EmpleadoControllerService,
-    private messageService: NzMessageService,
-    private fb: FormBuilder
-  ) { }
-
-  formEmpleado: FormGroup = this.fb.group({
+  formEmpleado: FormGroup= this.fb.group({
     idEmpleado: [],
     nombreCompleto: [],
     puesto: [],
     departamento: []
-  })
+  });
+
+  constructor(
+    private empleadoService: EmpleadoControllerService, 
+    private messageService: NzMessageService,
+    private fb: FormBuilder, 
+
+   
+  ) { }
 
   ngOnInit(): void {
-    this.empleadoService.find().subscribe(data => this.empleado = data)
-
+    this.empleadoService.find().subscribe(data => this.empleado = data) 
+    
   }
 
   eliminar(id: string): void {
@@ -56,7 +55,7 @@ export class EmpleadoComponent implements OnInit {
 
   mostrar(data?: Empleado): void {
     if (data?.idEmpleado) {
-      this.formEmpleado.setValue({ ...data, 'id': String(data.idEmpleado) })
+      this.formEmpleado.setValue({ ...data, 'idEmpleado': String(data.idEmpleado) })
     }
     this.visible = true
   }

@@ -26,11 +26,12 @@
                     <td>{{data.puesto}}</td>
                     <td>{{data.departamento}}</td>
                     
+                
                     <td>
                         <a (click)="mostrar(data)"><i nz-icon nzType="edit" nzTheme="twotone"></i></a>
                         <nz-divider nzType="vertical"></nz-divider>
-                        <a nz-popconfirm nzPopconfirmTitle="Esta seguro de borrar el registro?"
-                            nzPopconfirmPlacemennt="bottom" (nzOnConfirm)="eliminar(data.idEmpleado)"
+                        <a nz-popconfirm nzPopconfirmTitle="¿Está seguro de borrar el registro?"
+                            nzPopconfirmPlacement="bottom" (nzOnConfirm)="eliminar(data.idEmpleado)"
                             (nzOnCancel)="cancel()" nzShape="circle" nzCancelText="No" nzOkText="Si"><i nz-icon
                                 nzType="delete" nzTheme="outline"></i></a>
                     </td>
@@ -44,7 +45,7 @@
 
 <nz-modal [(nzVisible)]="visible" nzTitle="Administracion Empleado">
     <ng-container *nzModalContent>
-        <form nz-form nzLayout="vertical" (ngSubmit)="guardar()" FormGroup="formEmpleado">
+        <form nz-form nzLayout="vertical" (ngSubmit)="guardar()" [formGroup]="formEmpleado">
             <div nz-row [nzGutter]="8">
                 <div nz-col nzSpan="24">
                     <nz-form-item>
