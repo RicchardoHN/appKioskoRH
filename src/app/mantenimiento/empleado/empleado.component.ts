@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Empleado } from 'src/app/api/models';
+import { Empleado} from 'src/app/api/models';
 import { EmpleadoControllerService } from 'src/app/api/services';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';

@@ -12,5 +12,5 @@ export interface DepartamentoWithRelations {
   empleadoId?: string;
   idJefe?: string;
   jefes?: Array<JefeWithRelations>;
-  nombreDepartamento?: string;
+  nombreDepartamento: string;
 }

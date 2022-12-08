@@ -4,5 +4,5 @@ export interface Departamento {
   descripcion: string;
   empleadoId?: string;
   idJefe?: string;
-  nombreDepartamento?: string;
+  nombreDepartamento: string;
 }
