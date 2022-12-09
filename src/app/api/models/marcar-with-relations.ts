@@ -9,6 +9,6 @@ export interface MarcarWithRelations {
   empleados?: Array<EmpleadoWithRelations>;
   horaEntrada: string;
   horaSalida: string;
-  idEmpleado?: string;
+  idEmpleado: string;
   nombreCompleto: string;
 }

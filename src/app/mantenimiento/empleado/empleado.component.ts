@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Empleado} from 'src/app/api/models';
+import { Empleado, Departamento} from 'src/app/api/models';
 import { EmpleadoControllerService } from 'src/app/api/services';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { DepartamentoControllerService } from '../../api/services/departamento-controller.service';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 export class EmpleadoComponent implements OnInit {
 
   empleado: Empleado[] = [];
+  departamento: Departamento[] = [];
   visible: boolean = false;
   formEmpleado: FormGroup= this.fb.group({
     idEmpleado: [],
@@ -22,7 +24,8 @@ export class EmpleadoComponent implements OnInit {
   });
 
   constructor(
-    private empleadoService: EmpleadoControllerService, 
+    private empleadoService: EmpleadoControllerService,
+    private departamentoService: DepartamentoControllerService,
     private messageService: NzMessageService,
     private fb: FormBuilder, 
 
@@ -31,6 +34,7 @@ export class EmpleadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.empleadoService.find().subscribe(data => this.empleado = data) 
+    this.departamentoService.find().subscribe(data => this.departamento = data)
     
   }
 
