@@ -3,5 +3,5 @@
 export interface Jefe {
   departamento: string;
   departamentoId?: string;
-  idJefe?: string;
+  idJefe: string;
 }

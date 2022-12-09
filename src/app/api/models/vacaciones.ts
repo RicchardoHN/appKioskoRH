@@ -3,6 +3,6 @@
 export interface Vacaciones {
   fechaRegreso: string;
   fechaSalida: string;
-  idEmpleado?: string;
+  idEmpleado: string;
   nombreCompleto: string;
 }

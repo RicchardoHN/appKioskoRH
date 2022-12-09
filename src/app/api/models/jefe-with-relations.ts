@@ -6,6 +6,6 @@
  */
 export interface JefeWithRelations {
   departamento: string;
-  departamentoId?: string;
-  idJefe?: string;
+  departamentoId: string;
+  idJefe: string;
 }

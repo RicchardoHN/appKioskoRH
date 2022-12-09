@@ -3,7 +3,7 @@ import { Departamento } from 'src/app/api/models';
 import { DepartamentoControllerService } from 'src/app/api/services';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
-import { id_ID } from 'ng-zorro-antd/i18n';
+
 
 
 @Component({
