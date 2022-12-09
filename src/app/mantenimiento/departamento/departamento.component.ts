@@ -37,10 +37,13 @@ export class DepartamentoComponent implements OnInit {
 
   eliminar(id: string): void {
     this.departamentoService.deleteById({ id }).subscribe(() => {
-      this.departamento = this.departamento.filter(x => x.nombreDepartamento !== id);
+      this.departamento = this.departamento.filter(x => x.idJefe !== id);
       this.messageService.success('Registro Eliminado')
     })
   }
+
+
+
 
   cancel(): void {
     this.messageService.info('Su registro sigue activo')
