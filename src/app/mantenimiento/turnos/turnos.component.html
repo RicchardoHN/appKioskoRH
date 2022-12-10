@@ -46,9 +46,12 @@
             <div nz-row [nzGutter]="8">
                 <div nz-col nzSpan="24">
                     <nz-form-item>
-                        <nz-form-label>Nombre Completo</nz-form-label>
-                        <nz-form-control nzErrorTip="Por favor ingrese el dato correcto">
-                            <input formControlName="nombreCompleto" nz-input placeholder="Escriba el nombre completo del empleado" />
+                        <nz-form-label>Nombre Empleado</nz-form-label>
+                        <nz-form-control nzErrorTip="Por favor escriba el dato correcto!">
+                            <nz-select formControlName="nombreCompleto">
+                                <nz-option *ngFor="let item of empleado" [nzValue]="item.nombreCompleto" [nzLabel]="item.nombreCompleto">
+                                </nz-option>
+                            </nz-select>
                         </nz-form-control>
                     </nz-form-item>
                 </div>
