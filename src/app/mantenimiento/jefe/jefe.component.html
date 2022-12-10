@@ -14,7 +14,6 @@
                 <tr>
                     <th>#</th>
                     <th>Jefe</th>
-                    <th>Zona</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -22,7 +21,6 @@
                 <tr *ngFor="let data of basicTable.data; let i=index">
                     <td>{{i+1}}</td>
                     <td>{{data.departamento}}</td>
-                    <td>{{data.departamentoId}}</td>
                     <td>
                         <a (click)="mostrar(data)"><i nz-icon nzType="edit" nzTheme="twotone"></i></a>
                         <nz-divider nzType="vertical"></nz-divider>
@@ -53,18 +51,8 @@
                 </div>
             </div>
 
-            <div nz-row [nzGutter]="8">
-                <div nz-col nzSpan="24">
-                    <nz-form-item>
-                        <nz-form-label>Zona</nz-form-label>
-                        <nz-form-control nzErrorTip="Ubicacion">
-                            <input formControlName="departamentoId" nz-input placeholder="Escriba la ubicacion del Jefe" />
-                        </nz-form-control>
-                    </nz-form-item>
-                </div>
-            </div>
             
-
+            
         </form>
     </ng-container>
     <div *nzModalFooter>

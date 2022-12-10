@@ -9,6 +9,6 @@ export interface PermisoDiaWithRelations {
   empleados?: Array<EmpleadoWithRelations>;
   fechaRegreso: string;
   fechaSalida: string;
-  idEmpleado?: string;
+  idEmpleado: string;
   nombreCompleto: string;
 }

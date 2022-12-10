@@ -25,6 +25,7 @@
                     <td>{{data.nombreCompleto}}</td>
                     <td>{{data.puesto}}</td>
                     <td>{{data.departamento}}</td>
+                   
                     
                 
                     <td>
@@ -75,6 +76,21 @@
                             <nz-select formControlName="departamento">
                                 <nz-option *ngFor="let item of departamento" [nzValue]="item.nombreDepartamento"
                                     [nzLabel]="item.nombreDepartamento">
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+
+            <div nz-row [nzGutter]="8">
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label>Turnos</nz-form-label>
+                        <nz-form-control nzErrorTip="Por favor escriba el dato correcto!">
+                            <nz-select formControlName="turnos">
+                                <nz-option *ngFor="let item of turnos" [nzValue]="item.idTurno"
+                                    [nzLabel]="item.idTurno">
                                 </nz-option>
                             </nz-select>
                         </nz-form-control>

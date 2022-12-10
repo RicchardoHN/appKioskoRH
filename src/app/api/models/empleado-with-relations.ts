@@ -23,7 +23,7 @@ export interface EmpleadoWithRelations {
   permisoHoraId?: string;
   puesto: string;
   turnos?: TurnosWithRelations;
-  turnosId?: string;
+  turnosId: string;
   vacaciones?: VacacionesWithRelations;
   vacacionesId?: string;
 }
