@@ -8,7 +8,7 @@ import { EmpleadoWithRelations } from './empleado-with-relations';
 export interface TurnosWithRelations {
   empleados?: Array<EmpleadoWithRelations>;
   idEmpleado: string;
-  idTurno?: string;
+  idTurno: string;
   matutino: string;
   mixto: string;
   nocturno: string;

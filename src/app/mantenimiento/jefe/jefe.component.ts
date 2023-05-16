@@ -23,6 +23,7 @@ export class JefeComponent implements OnInit {
     departamento: [],
     departamentoId: [],
     idJefe: [],
+    
 
   });
 

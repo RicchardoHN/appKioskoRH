@@ -2,6 +2,6 @@
 /* eslint-disable */
 export interface Jefe {
   departamento: string;
-  departamentoId?: string;
+  departamentoId: string;
   idJefe: string;
 }
